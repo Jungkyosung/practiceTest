@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>NboardList</title>
+</head>
+<body>
+	<tabel>
+		<colgroup>
+			<col width="20%"/>
+			<col width="20"/>
+			<col width="20%"/>
+			<col width="20%"/>
+			<col width="20%"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th scope="col"> 게시글번호 </th>
+				<th scope="col"> 제목 </th>
+				<th scope="col"> 조회수 </th>
+				<th scope="col"> 작성자 </th>
+				<th scope="col"> 등록일자 </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${#lists.size(nBoardList)} > 0" th:each="nBoard : ${nBoardList}">
+				<td th:text="${nBoard.nboardIdx}"></td>
+				<td th:text="${nBoard.ntitle}"></td>
+				<td th:text="${nBoard.nhitCnt}"></td>
+				<td th:text="${nBoard.ncreatedDt}"></td>
+				<td th:text="${nBoard.ncreatedId}"></td>
+			</tr>
+			<tr th:unless="${#lists.size(nBoardList)} > 0">
+				<td colspan="5"> 조회 결과가 없음 </td>
+			</tr>
+		</tbody>
+	</tabel>
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jstg.mapper.JstgMapper">
+	<select id="selectNboardList" resultType="jstg.dto.NoticeDto">
+		select nboard_idx, ntitle, nhit_cnt, 
+		date_format(ncreated_dt, '%Y-%m-%d') as ncreated_dt, ncreated_id
+		from t_notice
+		where ndeleted_yn = 'N'
+	</select>
+	
+	<select id="selectProfileList" resultType="jstg.dto.ProfileDto">
+		select profile_idx, profile_name, profile_image
+		from t_profile	
+	</select>
+	
+	<select id="selectProfileDetail" parameterType="int" resultType="jstg.dto.ProfileDto">
+		select profile_name, profile_contents, profile_image, profile_url
+		from t_profile
+		where profile_idx = #{profileIdx}
+	</select>
+
+
+</mapper>

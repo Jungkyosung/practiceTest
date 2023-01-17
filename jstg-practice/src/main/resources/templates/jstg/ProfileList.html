@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>open Profile List</title>
+</head>
+<body>
+	<tabel>
+		<colgroup>
+			<col width="20%"/>
+			<col width="20"/>
+			<col width="20%"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th scope="col"> 프로필 이름 </th>
+				<th scope="col"> 프로필 이미지 </th>
+			</tr>
+		</thead>
+		<tbody>
+			<br>
+			<tr th:if="${#lists.size(ProfileList)} > 0" th:each="profile : ${ProfileList}">
+				<td> <a href="/jstg/openProfileDetail?profileIdx=" th:attrappend="href=${profile.profileIdx}" th:text="${profile.profileName}"></a></td>
+				<br>
+				<img src="" alt="" th:attrappend="src=${profile.profileImage}">
+			<br>
+			</tr>
+			<tr th:unless="${#lists.size(ProfileList)} > 0">
+				<td colspan="3"> 조회 결과가 없음 </td>
+			</tr>
+		</tbody>
+	</tabel>
+
+</body>
+</html>

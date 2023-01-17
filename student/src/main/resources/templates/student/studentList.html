@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>학생게시판</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" />	
+</head>
+<body>
+	<div class="container">
+		<h2>학생 목록</h2>
+		<table class="student_list">
+			<colgroup>
+				<col width="5%" />
+				<col width="*" />
+				<col width="*" />
+				<col width="*" />
+				<col width="*" />
+				<col width="5%" />
+				<col width="5%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">학번</th>
+					<th scope="col">이름</th>
+					<th scope="col">전공</th>
+					<th scope="col">이메일</th>
+					<th scope="col">등록일</th>
+					<th scope="col">등록자ID</th>
+					<th scope="col">삭제여부</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${#lists.size(list)} > 0" th:each="student : ${list}">
+					<td th:text="${student.studentIdx}"></td>
+					<td th:text="${student.studentName}" class="title"></td><!-- 클래스명 바꿀 필요 없나? -->
+					<td th:text="${student.specialty}"></td>
+					<td th:text="${student.email}"></td>
+					<td th:text="${student.registDt}"></td>
+					<td th:text="${student.registId}"></td>
+					<td th:text="${student.deletedYn}"></td>
+				</tr>
+				<tr th:unless="${#lists.size(list)} > 0">
+					<td colspan="7">조회된 결과가 없습니다.</td><!-- 바꿀 필요 없다면 4개로 다시 수정하면 될 듯 -->
+				</tr>
+			</tbody>
+		</table>
+		<a href="/student/openStudentWrite.do" class="btn">글쓰기</a><!-- 아직 안만들어서 바꿔야 할지 모르겠네 -->
+	</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="practiceTest.mapper.TestMapper">
+	<!-- 셀럽별로 게시판 표출 -->
+	<select id="selectFanboardList" parameterType="int" resultType="practiceTest.dto.Dto">
+		select fan_idx, ftitle, fcontents, fhit_cnt, fcreated_dt, fcreated_id, celebrity_name
+			from t_fan f
+			inner join t_celebrity c
+				on f.celebrity_idx = c.celebrity_idx and c.celebrity_idx = #{celebrityIdx}
+			order by c.celebrity_idx, f.fan_idx desc;
+	</select>
+	
+	<!-- 게시글 수 카운팅 -->
+	<select id="count" parameterType="practiceTest.dto.SearchDto" resultType="int">
+		select count(*)
+		from 테이블 이름
+		where deleted_yn = 'N'
+	</select>
+		
+	<!-- 셀럽별 게시판에 셀럽명 표출 -->
+	<select id="selectCelebrityName" parameterType="int" resultType="practiceTest.dto.Dto">
+		select celebrity_name
+		from t_celebrity
+		where celebrity_idx = #{celebrityIdx}
+	</select>
+
+</mapper>

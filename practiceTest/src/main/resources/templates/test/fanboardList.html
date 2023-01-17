@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<colgroup>
+			<col width="10%"/>
+			<col width="20%"/>
+			<col width="20%"/>
+			<col width="20%"/>
+			<col width="20%"/>
+			<col width="10%"/>
+		</colgroup>
+			<h1>[[${celebName.celebrityName}]]</h1>
+		<thead>
+			<tr>
+				<th scope="col"> 게시글번호 </th>
+				<th scope="col"> 제목 </th>
+				<th scope="col"> 내용 </th>
+				<th scope="col"> 조회수 </th>
+				<th scope="col"> 등록일자 </th>
+				<th scope="col"> 작성자 </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${#lists.size(List)} > 0" th:each="fanboard : ${List}">
+				<td th:text="${fanboard.fanIdx}"></td>
+				<td th:text="${fanboard.ftitle}"></td>
+				<td th:text="${fanboard.fcontents}"></td>
+				<td th:text="${fanboard.fhitCnt}"></td>
+				<td th:text="${fanboard.fcreatedDt}"></td>
+				<td th:text="${fanboard.fcreatedId}"></td>
+			</tr>
+			<tr th:unless="${#lists.size(List)} > 0">
+				<td colspan="6"> 조회 결과가 없음 </td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+</body>
+</html>

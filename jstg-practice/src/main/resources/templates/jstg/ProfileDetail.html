@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ProfileDetail</title>
+</head>
+<body>
+	<h th:text="${ProfileDetail.profileName}"></h>
+	<br>
+	<h th:text="${ProfileDetail.profileContents}"></h>
+	<br>
+	<h th:text="${ProfileDetail.profileImage}"></h>
+	<br>
+	<iframe width="1000" height="500" th:src="${ProfileDetail.profileUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	
+
+</body>
+</html>
