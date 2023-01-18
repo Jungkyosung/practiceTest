@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>FAN</title>
+	<!--<link rel="stylesheet" th:href="@{/css/main.css}" />-->
+
+	<style>
+		h2 {
+			text-align: center;
+		}
+		.container {
+			/* text-align: center; */
+			margin-left: auto;
+			margin-right: auto;
+			width:80%;
+			display: flex;
+			flex-direction:row;
+			align-items:flex-start;
+			justify-content: space-around;
+		}
+		.artistImg{
+			display: inline-flex;
+		}
+		.artistImg>img{
+			width:80%;
+			height:auto;
+		}
+
+		.board_list{
+			width:500px;
+			text-align: left;
+			border-collapse: collapse;
+			font-size:0.8rem;
+			
+		}
+		.board_list thead th{
+			border: 0px solid black;
+			border-top-width: 2px;
+			border-bottom-width: 1.5px;
+			height:2rem;
+		}
+
+		.board_list tbody .second_tr{
+			border: 0px solid grey;
+			border-bottom-width:1px;
+			
+		}
+
+		table > tbody > .second_tr > .createdDt
+
+		.title a{
+			color:black;
+			text-decoration: none;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div>
+		<div id="logo">
+			<a id="icon" href="main.do"><img src="/img/jstg-01.png" width=70px></a>
+		</div>
+		<div id="list">
+			<a id="icon" href="index.do"><img src="/img/list-01.png" width=35px></a>
+		</div>
+	</div>
+	<h2>[[${celebName.celebrityName}]] 게시판</h2>
+	<div class="container">
+		<div class="artistImg">
+			<img src="https://cdn.sports.hankooki.com/news/photo/202208/6804722_984185_5527.jpg" />
+		</div>
+		<div class="artist_tablebox">
+		<table class="board_list">
+			<colgroup>
+				<col width="*" />
+				<col width="*" />
+				<col width="*" />
+			</colgroup>
+
+			<thead>
+				<tr>
+					<th scope="col">글번호</th>
+					<th scope="col">제목</th>
+					<th scope="col">조회수</th>
+					<!-- <th scope="col">작성일</th> -->
+				</tr>
+			</thead>
+			<tbody>
+				<th:block th:if="${#lists.size(list)} > 0" th:each="fan : ${list}">
+					<tr>
+						<td th:text="${fan.fanIdx}" rowspan="2"></td>
+						<td class="title">
+							<a href="/openFanDetail.do?fanIdx=" th:attrappend="href=${fan.fanIdx}"
+								th:text="${fan.ftitle}"></a>
+						</td>
+
+						<td th:text="${fan.fhitCnt}" rowspan="2"></td>
+						<!-- <td th:text="${fan.fcreatedDt}"></td> -->
+						
+					</tr>
+					<tr class="second_tr">
+						<td class="createdDt" th:text="${fan.fcreatedDt}"></td>
+					</tr>
+					<tr th:unless="${#lists.size(list)} > 0">
+						<td colspan="4">조회된 결과가 없습니다.</td>
+					</tr>
+				</th:block>
+			</tbody>
+		</table>
+		</div>
+		
+	</div>
+	<a href="/openFanWrite.do" class="btn">글쓰기</a>
+
+</body>
+
+</html>

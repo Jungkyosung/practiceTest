@@ -22,16 +22,13 @@ public class TestController {
 	
 	@GetMapping("/test/openFanboardList")
 	public ModelAndView openBoardList(int celebrityIdx) throws Exception {
-		ModelAndView mv = new ModelAndView("/test/fanboardList");
+		ModelAndView mv = new ModelAndView("/test/fanList");
 		
 		List<Dto> list = testService.selectFanboardList(celebrityIdx);
-		mv.addObject("List", list);
+		mv.addObject("list", list);
 		
 		Dto celebName = testService.selectCelebrityName(celebrityIdx);
 		mv.addObject("celebName", celebName);
-		
-		//50개면 10개씩 5개의 리스트 필요 
-		
 		
 		return mv;
 	}
